@@ -1,0 +1,17 @@
+<h4>UserId</h4>
+<%= @userId %>
+
+<table>
+<thead>
+  <th>Game Name</th>
+  <th>Complete (%)</th>
+</thead>
+  <tbody>
+    <% @all_games.each do |game| %>
+      <tr>
+        <td><%=game['name']%></td>
+        <td><%=game['progressPercentage']%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
