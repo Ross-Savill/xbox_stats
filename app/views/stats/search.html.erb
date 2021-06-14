@@ -1,17 +1,26 @@
-<h4>UserId</h4>
-<%= @userId %>
+<h1>Gamertag: <%= @xbox_gamertag %></h1>
+<h1>Total Achievements: <%= @total_achievements %></h1>
+<h1>Total Gamerscore: <%= @total_gamerscore %></h1>
 
 <table>
-<thead>
-  <th>Game Name</th>
-  <th>Complete (%)</th>
-</thead>
+  <thead>
+    <th>Game Art</th>
+    <th>Game Name</th>
+    <th>Achievements Earned</th>
+    <th>Current Gamerscore</th>
+    <th>Complete (%)</th>
+  </thead>
   <tbody>
     <% @all_games.each do |game| %>
-      <tr>
-        <td><%=game['name']%></td>
-        <td><%=game['progressPercentage']%></td>
-      </tr>
+        <tr>
+          <td><img src="<%=game['displayImage']%>" width="200"></td>
+          <td><%= game['name'] %></td>
+          <td><%= game['achievement']['currentAchievements'] %></td>
+          <td><%= game['achievement']['currentGamerscore'] %> / <%= game['achievement']['totalGamerscore'] %></td>
+          <td><%= game['achievement']['progressPercentage'] %></td>
+          <td><%= link_to "Game", show_path_url(:first_step, :userId => @userId, :gameId => game["titleId"]) %></td>
+          <td><%= game %></td>
+        </tr>
     <% end %>
   </tbody>
 </table>
